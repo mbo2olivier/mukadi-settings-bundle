@@ -1,0 +1,16 @@
+{
+    "name": "mukadi/settings-bundle",
+    "description": "this bundle provide a global app settings form fully customisable",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "mbo2olivier",
+            "email": "mbo2olivier@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5",
+        "symfony/symfony": ">=2.8"
+    }
+}
