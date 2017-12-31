@@ -23,6 +23,23 @@ class Configuration implements ConfigurationInterface
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
+        $rootNode
+            ->children()
+                ->scalarNode('manager')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('param_class')->isRequired()->cannotBeEmpty()->end()
+                ->arrayNode('settings')
+                    ->defaultValue([])
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('type')->isRequired()->cannotBeEmpty()->end()
+                            ->arrayNode('options')
+                                ->prototype('scalar')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }

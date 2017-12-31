@@ -1,0 +1,26 @@
+services:
+    mukadi_settings.type.text:
+        class: Mukadi\SettingsBundle\Types\TextType
+        tags:
+            - { name: mukadi_settings.setting_type, alias: text }
+    mukadi_settings.type.choice:
+        class: Mukadi\SettingsBundle\Types\ChoiceType
+        tags:
+            - { name: mukadi_settings.setting_type, alias: choice }
+    mukadi_settings.type.textarea:
+        class: Mukadi\SettingsBundle\Types\TextareaType
+        tags:
+            - { name: mukadi_settings.setting_type, alias: textarea }
+    mukadi_settings.type.integer:
+        class: Mukadi\SettingsBundle\Types\IntegerType
+        tags:
+            - { name: mukadi_settings.setting_type, alias: integer }
+    mukadi_settings.type.number:
+        class: Mukadi\SettingsBundle\Types\NumberType
+        tags:
+            - { name: mukadi_settings.setting_type, alias: number }
+    mukadi_settings.type.entity:
+        class: Mukadi\SettingsBundle\Types\EntityType
+        arguments: ["@mukadi_settings.data_manager"]
+        tags:
+            - { name: mukadi_settings.setting_type, alias: entity }

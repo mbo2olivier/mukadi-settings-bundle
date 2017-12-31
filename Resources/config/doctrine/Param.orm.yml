@@ -1,0 +1,17 @@
+Mukadi\SettingsBundle\Entity\Param:
+    type: mappedSuperclass
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+            unique: true
+        value:
+            type: string
+            length: 255
+            nullable: true

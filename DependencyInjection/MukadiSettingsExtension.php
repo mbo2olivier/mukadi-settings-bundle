@@ -21,8 +21,31 @@ class MukadiSettingsExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
-
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
+        $loader->load('types.yml');
+        $this->setManager($config,$container);
+        $this->loadSettings($config,$container);
+    }
+
+    /**
+     * @param array $config
+     * @param ContainerBuilder $container
+     */
+    private function setManager(array $config, ContainerBuilder $container) {
+        $container->setAlias("mukadi_settings.data_manager", $config['manager']);
+        $container->setParameter("mukadi_settings_param_class", $config['param_class']);
+    }
+
+    /**
+     * @param array $config
+     * @param ContainerBuilder $container
+     */
+    private function loadSettings(array $config, ContainerBuilder $container){
+        if(isset($config['settings']))
+            $p = $config['settings'];
+        else
+            $p = array();
+        $container->setParameter("mukadi_settings_settings",$p);
     }
 }

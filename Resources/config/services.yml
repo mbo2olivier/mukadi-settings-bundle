@@ -1,4 +1,8 @@
 services:
-#    mukadi_settings.example:
-#        class: Mukadi\SettingsBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    mukadi_settings.setting:
+        class: Mukadi\SettingsBundle\Model\Setting
+        arguments:
+            - @form.factory
+            - @mukadi_settings.data_manager
+            - %mukadi_settings_param_class%
+            - %mukadi_settings_settings%

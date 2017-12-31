@@ -1,3 +1,0 @@
-mukadi_settings_homepage:
-    path:     /
-    defaults: { _controller: MukadiSettingsBundle:Default:index }
