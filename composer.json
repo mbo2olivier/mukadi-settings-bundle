@@ -12,5 +12,10 @@
     "require": {
         "php": ">=5.5",
         "symfony/symfony": ">=2.8"
+    },
+    "autoload" : {
+        "psr-4" : {
+            "Mukadi\\SettingsBundle\\" : ""
+        }
     }
 }
