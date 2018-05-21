@@ -13,6 +13,7 @@ use Mukadi\SettingsBundle\Model\Param;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 class Setting {
 
@@ -117,7 +118,7 @@ class Setting {
      */
     public function getForm(){
         $fb = $this->ffactory
-            ->createBuilder('Symfony\Component\Form\Extension\Core\Type\FormType',$this->getRawData())
+            ->createBuilder(FormType::class,$this->getRawData())
             ->setMethod("POST")
         ;
         foreach ($this->settings as $key => $config) {

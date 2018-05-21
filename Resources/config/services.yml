@@ -1,8 +1,11 @@
 services:
     mukadi_settings.setting:
         class: Mukadi\SettingsBundle\Model\Setting
+        public: true
         arguments:
-            - @form.factory
-            - @mukadi_settings.data_manager
-            - %mukadi_settings_param_class%
-            - %mukadi_settings_settings%
+            - '@form.factory'
+            - '@mukadi_settings.data_manager'
+            - '%mukadi_settings_param_class%'
+            - '%mukadi_settings_settings%'
+    Mukadi\SettingsBundle\Model\Setting:
+        alias: mukadi_settings.setting

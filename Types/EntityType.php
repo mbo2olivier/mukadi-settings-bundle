@@ -8,7 +8,7 @@
 
 namespace Mukadi\SettingsBundle\Types;
 
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType as FType;
 use Doctrine\Common\Persistence\ObjectManager;
 
 class EntityType  extends ParamType{
@@ -34,7 +34,7 @@ class EntityType  extends ParamType{
 
     public function getFormType()
     {
-        return 'Symfony\Bridge\Doctrine\Form\Type\EntityType';
+        return FType::class;
     }
 
     public function transform($value)

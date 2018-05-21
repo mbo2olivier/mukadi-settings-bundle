@@ -7,16 +7,13 @@ You can render the settings form in admin page for example. The form building is
 
 Features:
 
-- Settings can be stored via Doctrine ORM, MongoDB/CouchDB ODM or Propel
+- Settings can be stored via Doctrine ORM.
 - Form building centralized in config files (e.g: config.xml or an imported settings.yml file)
 - A Service for querying stored settings.
 
-**Note:** At this time, only Doctrine ORM support implemented.
 
 Installation
 ------------
-
-This version of the bundle requires Symfony 2.8+ and PHP 5.5+.
 
 Install the bundle via composer by running the command:
 
@@ -24,32 +21,30 @@ Install the bundle via composer by running the command:
 $ php composer.phar require mukadi/settings-bundle
 ```
 
-Enable the bundle in the kernel:
-
-
-``` php
-<?php
-// app/AppKernel.php
-
-public function registerBundles()
-{
-    $bundles = array(
-        // ...
-       new Mukadi\SettingsBundle\MukadiSettingsBundle(),
-    );
-}
-```
+If you're not using Symfony Flex, you must follow next instructions to configure the bundle yourself.
 
 Configuration
 -------------
+
+## Enable the bundle in the kernel:
+
+``` php
+<?php
+// config/bundles.php
+return [
+        // ...
+       Mukadi\SettingsBundle\MukadiSettingsBundle::class => ['all' => true],
+    ];
+```
+## Create the Param class
 
 First, create your Param class by extending the base `Param` class (the class to use depends of your storage)
 
 ``` php
 <?php
-// src/AppBundle/Entity/Param.php
+// src/App/Entity/Param.php
 
-namespace AppBundle\Entity;
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Mukadi\SettingsBundle\Entity\Param as Base;
@@ -64,13 +59,15 @@ class Param extends Base
 }
 ```
 
-And configure the bundle for using this class, and specifying the current Object Manager used by the application:
+## Add packages configuration file
+
+Configure the bundle for using this class, and optionnaly specifying the current Object Manager used by the application, if 'manager' key is missing the default Doctrine entity manager will be used:
 
 ``` yaml
-# app/config/config.yml
+# config/packages/mukadi_settings.yaml
 mukadi_settings:
-    manager: doctrine.orm.entity_manager
-    param_class: AppBundle\Entity\Param
+    manager: app.my_custom_manager
+    param_class: App\Entity\Param
 ```
 
 Now that the bundle is configured, the last thing you need to do is update your
@@ -89,28 +86,27 @@ Below is a minimal example of the necessary configuration for build a settings f
 ``` yaml
 # app/config/config.yml
 mukadi_settings:
-    manager: doctrine.orm.entity_manager
     param_class: AppBundle\Entity\Param
     settings:
         currency: # the setting key
             type: choice # the form field type
             options: # options to provide to the field
                 label: Devise
-                choices: (USD: Dollar US,CDF: Francs Congolais) # use this notation for setting up the choice list
+                choices: '(USD: Dollar US,CDF: Francs Congolais)' # use this notation for setting up the choice list
         bio:
-            type: text
+            type: textarea
             options:
-                label: Ma bio
+                label: 'About me'
         age:
-            type: number
+            type: integer
             options:
                 label: Age
-        node:
+        post:
             type: entity
             options:
-                label: Entité
-                property: name
-                class: AppBundle\Entity\Node
+                label: Article
+                choice_label: title
+                class: App\Entity\Post
 ```
 
 The currently supported types are:
@@ -125,11 +121,11 @@ Usage
 -----
 
 Now that you have properly create your settings form. You can render it a custom `SonataAdminBundle` action page, or in any view in your application:
-In the controller use the `mukadi_settings.setting` service for getting the form
+In the controller use the `mukadi_settings.setting` service for getting the form (Or use the `Mukadi\SettingsBundle\Model\Setting` class if you're using the autowiring)
 
 ``` php
 <?php
-// src/AppBundle/Controller/DefaultController.php
+// src/Controller/AppController.php
 
 ...
 $setting = $this->get('mukadi_settings.setting');
@@ -150,7 +146,7 @@ When the form is submitted, in your controller you must handle that request if y
 
 ``` php
 <?php
-// src/AppBundle/Controller/DefaultController.php
+// src/Controller/AppController.php
 
 ...
 $setting = $this->get('mukadi_settings.setting');
@@ -165,10 +161,10 @@ And finally you can retrieve the stored data via the `mukadi_settings.setting` s
 
 ``` php
 <?php
-// src/AppBundle/Controller/DefaultController.php
+// src/Controller/AppController.php
 ...
 $setting = $this->get('mukadi_settings.setting');
 $currency = $setting->get('currency'); // return 'USD' or 'CDF'
 $bio = $setting->get('bio'); // return a string
-$node = $setting->get('node'); // return null or a AppBundle\Entity\Node entity as configured
+$node = $setting->get('post'); // return null or a App\Entity\Post entity as configured
 ```

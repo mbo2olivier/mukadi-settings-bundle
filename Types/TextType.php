@@ -8,6 +8,7 @@
 
 namespace Mukadi\SettingsBundle\Types;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType as FType;
 
 class TextType extends ParamType{
 
@@ -22,7 +23,7 @@ class TextType extends ParamType{
 
     public function getFormType()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\TextType';
+        return FType::class;
     }
 
     public function transform($value)

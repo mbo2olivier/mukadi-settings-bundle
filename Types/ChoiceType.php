@@ -8,12 +8,13 @@
 
 namespace Mukadi\SettingsBundle\Types;
 
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType as FType;
 
 class ChoiceType extends TextType{
 
     public function getFormType()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\ChoiceType';
+        return FType::class;
     }
 
     public function configure(array $options)
@@ -28,9 +29,10 @@ class ChoiceType extends TextType{
                 if(preg_match("#:#",$v)){
                     $v = explode(":",$v);
                     $key = array_shift($v);
-                    $c[$key] = array_shift($v);
+                    $label = array_shift($v);
+                    $c[$label] = $key;
                 }else{
-                    $c[] = $v;
+                    $c[$v] = $v;
                 }
             }
             $choices = $c;

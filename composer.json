@@ -5,12 +5,25 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "mbo2olivier",
+            "name": "Olivier M. Mukadi",
             "email": "mbo2olivier@gmail.com"
         }
     ],
     "require": {
         "php": ">=5.5",
-        "symfony/symfony": ">=2.8"
+        "symfony/framework-bundle": "^2.8||^3.4||^4.0",
+        "doctrine/doctrine-bundle": "^1.0",
+        "doctrine/orm": "^2.2",
+        "symfony/form": "~3.4|~4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mukadi\\SettingsBundle\\": ""
+        }
+    },
+    "suggest": {
+        "symfony/validator": "For the validation of the settings form.",
+        "symfony/security-csrf": "For protecting settings form against CSRF attacks.",
+        "symfony/twig-bridge": "For templating with Twig."
     }
 }

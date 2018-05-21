@@ -8,11 +8,12 @@
 
 namespace Mukadi\SettingsBundle\Types;
 
+use Symfony\Component\Form\Extension\Core\Type\TextareaType as FType;
 
 class TextareaType extends TextType{
 
     public function getFormType()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\TextareaType';
+        return FType::class;
     }
 } 

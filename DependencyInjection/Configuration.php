@@ -25,7 +25,7 @@ class Configuration implements ConfigurationInterface
         // more information on that topic.
         $rootNode
             ->children()
-                ->scalarNode('manager')->isRequired()->cannotBeEmpty()->end()
+                ->scalarNode('manager')->defaultValue('doctrine.orm.default_entity_manager')->end()
                 ->scalarNode('param_class')->isRequired()->cannotBeEmpty()->end()
                 ->arrayNode('settings')
                     ->defaultValue([])

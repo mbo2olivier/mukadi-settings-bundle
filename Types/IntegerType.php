@@ -8,6 +8,7 @@
 
 namespace Mukadi\SettingsBundle\Types;
 
+use Symfony\Component\Form\Extension\Core\Type\IntegerType as FType;
 
 class IntegerType extends ParamType{
 
@@ -33,7 +34,7 @@ class IntegerType extends ParamType{
 
     public function getFormType()
     {
-        return 'Symfony\Component\Form\Extension\Core\Type\IntegerType';
+        return FType::class;
     }
 
 } 
