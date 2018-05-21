@@ -15,10 +15,16 @@ Features:
 Installation
 ------------
 
+if you want to use symfony flex run the following command in your project:
+
+``` bash
+$ composer config extra.symfony.allow-contrib true
+```
+
 Install the bundle via composer by running the command:
 
 ``` bash
-$ php composer.phar require mukadi/settings-bundle
+$ composer require mukadi/settings-bundle
 ```
 
 If you're not using Symfony Flex, you must follow next instructions to configure the bundle yourself.
