@@ -1,0 +1,20 @@
+os: linux
+env:
+    - SKELETON_VERSION="^3.4"
+    - SKELETON_VERSION="^4.0"
+php: 7.1
+dist: trusty
+sudo: false
+cache:
+    directories:
+        - $HOME/.composer/cache/files
+group: stable
+before_install:
+    - composer self-update
+script:
+    - composer require mukadi/settings-bundle 1.0.0-dev
+install:
+    - composer create-project symfony/skeleton:${SKELETON_VERSION} app
+    - cd app
+    - composer config extra.symfony.allow-contrib true
+language: php

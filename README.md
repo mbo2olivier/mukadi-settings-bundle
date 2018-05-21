@@ -42,7 +42,7 @@ First, create your Param class by extending the base `Param` class (the class to
 
 ``` php
 <?php
-// src/App/Entity/Param.php
+// src/Entity/Param.php
 
 namespace App\Entity;
 
@@ -138,7 +138,7 @@ And in your view, render the form like any other form:
 {# app/Resources/views/default/form.html.twig #}
 {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button type="submit">save setiings</button>
+    <button type="submit">save settings</button>
 {{ form_end(form) }}
 ```
 
