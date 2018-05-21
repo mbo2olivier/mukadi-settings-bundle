@@ -90,7 +90,7 @@ Build the form
 Below is a minimal example of the necessary configuration for build a settings form:
 
 ``` yaml
-# app/config/config.yml
+# config/packages/mukadi_settings.yaml
 mukadi_settings:
     param_class: AppBundle\Entity\Param
     settings:
