@@ -4,6 +4,11 @@ services:
         public: false
         tags:
             - { name: mukadi_settings.setting_type, alias: text }
+    mukadi_settings.type.toggle:
+        class: Mukadi\SettingsBundle\Types\ToggleType
+        public: false
+        tags:
+            - { name: mukadi_settings.setting_type, alias: toggle }
     mukadi_settings.type.choice:
         class: Mukadi\SettingsBundle\Types\ChoiceType
         public: false

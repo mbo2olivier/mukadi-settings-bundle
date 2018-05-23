@@ -33,8 +33,8 @@ class MukadiSettingsExtension extends Extension
      * @param ContainerBuilder $container
      */
     private function setManager(array $config, ContainerBuilder $container) {
-        $container->setAlias("mukadi_settings.data_manager", $config['manager']);
-        $container->setParameter("mukadi_settings_param_class", $config['param_class']);
+        $container->setAlias("mukadi_settings.data_manager", ($config['manager']? $config['manager']: 'doctrine.orm.default_entity_manager'));
+        $container->setParameter("mukadi_settings_param_class", ($config['param_class']? $config['param_class']: 'App\Entity\Param'));
     }
 
     /**

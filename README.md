@@ -92,7 +92,7 @@ Below is a minimal example of the necessary configuration for build a settings f
 ``` yaml
 # config/packages/mukadi_settings.yaml
 mukadi_settings:
-    param_class: AppBundle\Entity\Param
+    param_class: App\Entity\Param
     settings:
         currency: # the setting key
             type: choice # the form field type
@@ -119,6 +119,7 @@ The currently supported types are:
 
 - text : simple text field, save setting as plain text in the database
 - integer : input for integer
+- toggle : a simple checkbox
 - number: input for number (decimals and float)
 - textarea: multi-lines text input
 - entity: for select an entity in the database. The bundle store only the `id`.
