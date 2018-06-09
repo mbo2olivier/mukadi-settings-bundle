@@ -113,6 +113,26 @@ mukadi_settings:
                 label: Article
                 choice_label: title
                 class: App\Entity\Post
+        admin:
+            type: email
+            options:
+                label: Admin email
+        date:
+            type: date
+            options:
+                widget: single_text
+                format: yyyy-MM-dd
+        birthday:
+            type: datetime
+            options:
+                days: '[1-10]' # range notation, generate values from 1 to 10
+                months: '[1-12,2]' # range notation, generate values from 1 to 12, the value 2 is incrementation step
+                years: '(2016,2017)' # array notation
+        public:
+            type: toggle
+            options:
+                label: 'Show posts ?'
+                required: false
 ```
 
 The currently supported types are:
@@ -123,6 +143,9 @@ The currently supported types are:
 - number: input for number (decimals and float)
 - textarea: multi-lines text input
 - entity: for select an entity in the database. The bundle store only the `id`.
+- email: input for email adresses
+- datetime: input for date and time
+- date: input for date
 
 Usage
 -----

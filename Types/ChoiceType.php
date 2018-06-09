@@ -8,6 +8,7 @@
 
 namespace Mukadi\SettingsBundle\Types;
 
+use Mukadi\SettingsBundle\Utils\Interpretor;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType as FType;
 
 class ChoiceType extends TextType{
@@ -20,22 +21,7 @@ class ChoiceType extends TextType{
     public function configure(array $options)
     {
         if(isset($options['choices'])) {
-            $choices = $options['choices'];
-            $choices = substr($choices,1);
-            $choices = substr($choices,0,strlen($choices)-1);
-            $choices = explode(",",$choices);
-            $c=[];
-            foreach ($choices as $v) {
-                if(preg_match("#:#",$v)){
-                    $v = explode(":",$v);
-                    $key = array_shift($v);
-                    $label = array_shift($v);
-                    $c[$label] = $key;
-                }else{
-                    $c[$v] = $v;
-                }
-            }
-            $choices = $c;
+            $choices = Interpretor::getArray($options['choices']);
         }else{
             $choices = [];
         }

@@ -9,6 +9,21 @@ services:
         public: false
         tags:
             - { name: mukadi_settings.setting_type, alias: toggle }
+    mukadi_settings.type.email:
+        class: Mukadi\SettingsBundle\Types\EmailType
+        public: false
+        tags:
+            - { name: mukadi_settings.setting_type, alias: email }
+    mukadi_settings.type.datetime:
+        class: Mukadi\SettingsBundle\Types\DateTimeType
+        public: false
+        tags:
+            - { name: mukadi_settings.setting_type, alias: datetime }
+    mukadi_settings.type.date:
+        class: Mukadi\SettingsBundle\Types\DateType
+        public: false
+        tags:
+            - { name: mukadi_settings.setting_type, alias: date }
     mukadi_settings.type.choice:
         class: Mukadi\SettingsBundle\Types\ChoiceType
         public: false
